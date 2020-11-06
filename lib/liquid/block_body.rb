@@ -114,7 +114,7 @@ module Liquid
         when token.start_with?(TAGSTART)
           whitespace_handler(token, parse_context)
           unless token =~ FullToken
-            BlockBody.raise_missing_tag_terminator(token, parse_context)
+            return yield token, token
           end
           tag_name = Regexp.last_match(2)
           markup   = Regexp.last_match(4)
